@@ -28,7 +28,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <div class="hidden md:flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-4" id="desktop-nav">
                     <a href="../index.html" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                         Home
@@ -37,16 +37,12 @@
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                         Research Papers
                     </a>
-                    <button onclick="logout()" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>
-                        Logout
-                    </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-blue-600 border-t border-blue-500">
-            <div class="px-4 py-3 space-y-2 text-white">
+            <div class="px-4 py-3 space-y-2 text-white" id="mobile-nav">
                 <a href="../index.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                     Home
@@ -361,10 +357,74 @@
             });
         }
         window.addEventListener('DOMContentLoaded', updateSectionLabels);
+        // Check login status and update UI
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const desktopNav = document.getElementById('desktop-nav');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (isLoggedIn) {
+                // Add logout button to desktop nav
+                const logoutBtn = document.createElement('button');
+                logoutBtn.onclick = logout;
+                logoutBtn.className = 'text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center';
+                logoutBtn.innerHTML = `
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/>
+                    </svg>
+                    Logout
+                `;
+                desktopNav.appendChild(logoutBtn);
+
+                // Add logout button to mobile nav
+                const mobileLogout = document.createElement('a');
+                mobileLogout.href = '#';
+                mobileLogout.onclick = (e) => {
+                    e.preventDefault();
+                    logout();
+                };
+                mobileLogout.className = 'flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700';
+                mobileLogout.innerHTML = `
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/>
+                    </svg>
+                    Logout
+                `;
+                mobileNav.appendChild(mobileLogout);
+            } else {
+                // Add login button to desktop nav
+                const loginBtn = document.createElement('a');
+                loginBtn.href = '../login.html';
+                loginBtn.className = 'text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center';
+                loginBtn.innerHTML = `
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                    </svg>
+                    Login
+                `;
+                desktopNav.appendChild(loginBtn);
+
+                // Add login button to mobile nav
+                const mobileLogin = document.createElement('a');
+                mobileLogin.href = '../login.html';
+                mobileLogin.className = 'flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700';
+                mobileLogin.innerHTML = `
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                    </svg>
+                    Login
+                `;
+                mobileNav.appendChild(mobileLogin);
+            }
+        }
+
         // Mobile menu toggle
         window.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Check authentication status and update UI
+            checkAuth();
             if (menuToggle && mobileMenu) {
                 menuToggle.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
