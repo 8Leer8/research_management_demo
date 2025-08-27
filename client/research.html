@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Papers - Student Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <script>
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            window.location.href = '../login.html';
+        }
+    </script>
+    <!-- Navigation -->
+    <nav class="bg-blue-600 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <h1 class="text-white text-xl font-bold">Research Paper Archive</h1>
+                </div>
+                <!-- Mobile menu button -->
+                <button id="menu-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-white md:hidden" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="index.html" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        Home
+                    </a>
+                    <a href="research.html" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium bg-blue-700 inline-flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        Research Papers
+                    </a>
+                    <button onclick="logout()" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-blue-600 border-t border-blue-500">
+            <div class="px-4 py-3 space-y-2 text-white">
+                <a href="index.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    Home
+                </a>
+                <a href="research.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    Research Papers
+                </a>
+                <button onclick="logout()" class="w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Research Papers</h2>
+            <p class="text-gray-600">Explore our collection of high school research papers from various academic disciplines.</p>
+        </div>
+        <div class="flex justify-end mb-6">
+            <button onclick="openModal()" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Submit Research
+            </button>
+        </div>
+        <!-- Search and Filter Bar -->
+        <div class="bg-white p-4 rounded-lg shadow-md mb-8">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-1">
+                    <input type="text" placeholder="Search by title or author..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="md:w-48">
+                    <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option>All School Years</option>
+                        <option>2023-2024</option>
+                        <option>2022-2023</option>
+                        <option>2021-2022</option>
+                        <option>2020-2021</option>
+                    </select>
+                </div>
+                <div class="md:w-48">
+                    <select id="sectionFilter" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">All Sections</option>
+                        <option value="TVL ICT">TVL ICT</option>
+                        <option value="TVL EIM">TVL EIM</option>
+                        <option value="TVL HE">TVL HE</option>
+                        <option value="HUMSS">HUMSS</option>
+                    </select>
+                </div>
+                <button class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Research Papers Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Paper 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" data-section="tvl ict">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">2023-2024</span>
+                        <span class="text-sm text-gray-500">TVL ICT</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Developing a School Enrollment System Using Web Technologies</h3>
+                    <p class="text-gray-600 text-sm mb-3">By: Sarah Johnson</p>
+                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">A Grade 12 research study focusing on a web-based enrollment platform featuring student records, scheduling, and basic analytics for the ICT strand.</p>
+                    <a href="../PROTOTYPE.pdf" target="_blank" class="block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        View PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Paper 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" data-section="tvl eim">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">2022-2023</span>
+                        <span class="text-sm text-gray-500">TVL EIM</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Energy-Efficient Classroom Lighting: An EIM Implementation</h3>
+                    <p class="text-gray-600 text-sm mb-3">By: Michael Chen</p>
+                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">Design and installation of LED lighting with proper wiring plans, protective devices, and load calculations for classrooms.</p>
+                    <a href="../PROTOTYPE.pdf" target="_blank" class="block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        View PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Paper 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" data-section="humss">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">2023-2024</span>
+                        <span class="text-sm text-gray-500">HUMSS</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Media Literacy and Student Engagement in HUMSS</h3>
+                    <p class="text-gray-600 text-sm mb-3">By: Emily Rodriguez</p>
+                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">An inquiry into how media literacy competencies influence classroom participation and critical thinking among HUMSS students.</p>
+                    <a href="../PROTOTYPE.pdf" target="_blank" class="block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        View PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Paper 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" data-section="tvl he">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">2022-2023</span>
+                        <span class="text-sm text-gray-500">TVL HE</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Food Safety and Nutrition Practices in School Canteens</h3>
+                    <p class="text-gray-600 text-sm mb-3">By: David Kim</p>
+                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">Assessment of safe food handling, storage, and basic nutrition planning to improve school canteen operations.</p>
+                    <a href="../PROTOTYPE.pdf" target="_blank" class="block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        View PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Paper 5 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" data-section="tvl ict">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">2021-2022</span>
+                        <span class="text-sm text-gray-500">TVL ICT</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Local Network Design and Management for Computer Labs</h3>
+                    <p class="text-gray-600 text-sm mb-3">By: Lisa Wang</p>
+                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">A practical guide to planning IP addressing, basic switching, and workstation setup for a small school network.</p>
+                    <a href="../PROTOTYPE.pdf" target="_blank" class="block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        View PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Paper 6 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" data-section="tvl eim">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">2023-2024</span>
+                        <span class="text-sm text-gray-500">TVL EIM</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Solar-Powered Emergency Lighting for Campus Corridors</h3>
+                    <p class="text-gray-600 text-sm mb-3">By: James Thompson</p>
+                    <p class="text-gray-700 text-sm mb-4 line-clamp-3">Prototype and installation plan for low-voltage solar lighting circuits with safety and maintenance procedures.</p>
+                    <a href="../PROTOTYPE.pdf" target="_blank" class="block w-full text-center bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">
+                        View PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+
+    <!-- Add Paper Modal -->
+    <div id="addPaperModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Submit New Research</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600" aria-label="Close">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal Form -->
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Paper Title</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter paper title">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Author Name</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter author name">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">School Year</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option>Select year</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Section</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option>SELECT SECTION</option>
+                            <option>TVL ICT</option>
+                            <option>TVL EIM</option>
+                            <option>TVL HE</option>
+                            <option>HUMSS</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Upload PDF</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="mt-4">
+                                <label class="cursor-pointer">
+                                    <span class="text-blue-600 hover:text-blue-500">Upload a file</span>
+                                    <input type="file" class="hidden" accept=".pdf">
+                                </label>
+                                <p class="text-gray-500">or drag and drop</p>
+                            </div>
+                            <p class="text-xs text-gray-500">PDF up to 10MB</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                        <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Additional notes (optional)"></textarea>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end space-x-3 pt-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition duration-300">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2024 Research Paper Archive. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function openModal() {
+            document.getElementById('addPaperModal').classList.remove('hidden');
+        }
+        function closeModal() {
+            document.getElementById('addPaperModal').classList.add('hidden');
+        }
+        // Function to open PDF in new tab
+        function openPdf(pdfUrl) {
+            if (!pdfUrl) {
+                alert('No PDF file available.');
+                return;
+            }
+            window.open(pdfUrl, '_blank');
+        }
+        
+        // Close modal when clicking outside the modal content
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('addPaperModal');
+            
+            if (modal && !modal.classList.contains('hidden') && e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('addPaperModal');
+            
+            if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+        // Section filter logic
+        document.getElementById('sectionFilter').addEventListener('change', function() {
+            const val = this.value.trim().toLowerCase();
+            const cards = document.querySelectorAll('[data-section]');
+            cards.forEach(card => {
+                const section = (card.getAttribute('data-section') || '').toLowerCase();
+                if (!val || val === '' || section === val) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+        // Replace right-side subject label with SECTION (caps) from data-section
+        function updateSectionLabels() {
+            const cards = document.querySelectorAll('[data-section]');
+            cards.forEach(card => {
+                const sectionCaps = (card.getAttribute('data-section') || '').toUpperCase();
+                const headerRow = card.querySelector('.p-6 > .flex.items-center.justify-between');
+                if (headerRow) {
+                    const rightLabel = headerRow.querySelector('span:last-child');
+                    if (rightLabel) {
+                        rightLabel.textContent = sectionCaps || 'SECTION';
+                    }
+                }
+            });
+        }
+        window.addEventListener('DOMContentLoaded', updateSectionLabels);
+        // Mobile menu toggle
+        window.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', String(!expanded));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
