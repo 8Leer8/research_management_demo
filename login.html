@@ -9,13 +9,13 @@
 <body class="bg-gray-50 min-h-screen">
     <div class="min-h-screen grid md:grid-cols-5">
         <!-- Left panel / Branding -->
-        <div class="hidden md:flex flex-col justify-center bg-gradient-to-br from-indigo-600 to-blue-600 text-white p-8 lg:p-10 md:col-span-2">
-            <div class="max-w-sm">
-                <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight">Research Paper Archive</h1>
-                <p class="mt-3 text-indigo-100 text-base">Access approved research papers, manage submissions, and explore academic excellence.</p>
-                <div class="mt-6">
-                    <p class="text-indigo-50/95 leading-relaxed text-sm">
-                        Welcome to the Research Paper Archive — a centralized portal to explore approved student
+        <div class="hidden md:flex flex-col items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-600 text-white p-8 lg:p-10 md:col-span-2">
+            <div class="max-w-sm text-center">
+                <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-6">Research Paper Archive</h1>
+                <p class="text-xl text-indigo-100 mb-8">Access approved research papers, manage submissions, and explore academic excellence.</p>
+                <div class="mt-8">
+                    <p class="text-indigo-50/95 leading-relaxed text-base">
+                        Welcome to the Research Paper Archive  a centralized portal to explore approved student
                         research, manage submissions, and collaborate across departments. Browse curated papers,
                         track progress, and streamline your academic workflow in one intuitive space.
                     </p>
@@ -178,13 +178,13 @@
                 localStorage.setItem('userRole', 'admin');
                 localStorage.setItem('username', 'admin');
                 localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = 'admin/dashboard.html';
+                window.location.href = './admin/dashboard.html';
             } else if (username === 'client' && password === 'client') {
                 // Client login
                 localStorage.setItem('userRole', 'client');
                 localStorage.setItem('username', 'client');
                 localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = 'client/index.html';
+                window.location.href = 'index.html';
             } else {
                 // Check registered users from localStorage
                 const users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -193,7 +193,7 @@
                     localStorage.setItem('userRole', found.role || 'client');
                     localStorage.setItem('username', found.username);
                     localStorage.setItem('isLoggedIn', 'true');
-                    window.location.href = 'client/index.html';
+                    window.location.href = 'index.html';
                 } else {
                     // Invalid credentials
                     errorMessage.textContent = 'Invalid username or password';
