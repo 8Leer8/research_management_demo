@@ -33,38 +33,38 @@
         }
     </script>
     <!-- Navigation -->
-    <nav class="bg-indigo-600 shadow-lg sticky top-0 z-50">
+    <nav class="bg-[#53317B] shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center">
                     <h1 class="text-white text-xl font-bold">Admin Portal</h1>
                 </div>
                 <!-- Mobile menu button -->
-                <button id="menu-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-white md:hidden" aria-controls="mobile-menu" aria-expanded="false">
+                <button id="menu-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-[#53317B] focus:outline-none focus:ring-2 focus:ring-white md:hidden" aria-controls="mobile-menu" aria-expanded="false">
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="dashboard.html" class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <a href="dashboard.html" class="text-white hover:bg-[#3A2352] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center transition duration-150 ease-in-out">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                         Dashboard
                     </a>
-                    <a href="manage.html" class="bg-indigo-700 text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <a href="manage.html" class="bg-[#3A2352] text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h8M9 7H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2" />
                         </svg>
                         Manage Papers
                     </a>
-                    <a href="accounts.html" class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <a href="accounts.html" class="text-white hover:bg-[#3A2352] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center transition duration-150 ease-in-out">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                         </svg>
                         Manage Accounts
                     </a>
-                    <button onclick="logout()" class="text-white hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <button onclick="logout()" class="text-white hover:bg-[#3A2352] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center transition duration-150 ease-in-out">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
                         </svg>
@@ -74,27 +74,27 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-indigo-600 border-t border-indigo-500">
+        <div id="mobile-menu" class="md:hidden hidden bg-[#53317B] border-t border-[#3A2352]">
             <div class="px-4 py-3 space-y-2 text-white">
-                <a href="dashboard.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <a href="dashboard.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-[#3A2352] transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     Dashboard
                 </a>
-                <a href="manage.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <a href="manage.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium bg-[#3A2352] transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h8M9 7H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2" />
                     </svg>
                     Manage Papers
                 </a>
-                <a href="accounts.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <a href="accounts.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-[#3A2352] transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                     </svg>
                     Manage Accounts
                 </a>
-                <button onclick="logout()" class="w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <button onclick="logout()" class="w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-[#3A2352] transition duration-150 ease-in-out">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
                     </svg>
@@ -112,7 +112,7 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-2">Manage Papers</h2>
                 <p class="text-gray-600">Review, approve, and manage submitted research papers</p>
             </div>
-            <button onclick="openModal()" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300">
+            <button onclick="openModal()" class="inline-flex items-center px-4 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
@@ -124,35 +124,36 @@
         <div class="bg-white p-4 rounded-lg shadow-md mb-6">
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="flex-1">
-                    <input type="text" placeholder="Search by title or author..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <input type="text" placeholder="Search by title or author..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#9929EA] focus:border-[#9929EA]">
                 </div>
                 <div class="md:w-48">
-                    <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option>All Status</option>
-                        <option>Pending</option>
-                        <option>Approved</option>
-                        <option>Denied</option>
+                    <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#9929EA] focus:border-[#9929EA]">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="denied">Denied</option>
                     </select>
                 </div>
                 <div class="md:w-48">
-                    <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option>All Years</option>
-                        <option>2024</option>
-                        <option>2023</option>
-                        <option>2022</option>
+                    <select id="yearFilter" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#9929EA] focus:border-[#9929EA]">
+                        <option value="all">All Years</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2021-2022">2021-2022</option>
                     </select>
                 </div>
             </div>
         </div>
 
         <!-- Papers List -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div id="papers-list-container" class="bg-white rounded-lg shadow-md overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-900">Submitted Papers</h3>
             </div>
             
             <!-- Research Papers List -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -164,17 +165,17 @@
                         <p class="text-sm text-gray-700">A comprehensive system for managing student records, attendance, and academic performance.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -186,20 +187,25 @@
                         <p class="text-sm text-gray-700">A study on implementing automated monitoring of electrical consumption in school facilities.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <!-- View PDF button (always visible) -->
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 text-sm">
+                        
+                        <!-- Approve/Undo Approve button -->
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
                             Approve
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
+                        
+                        <!-- Deny/Undo Deny button -->
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
                             Deny
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -211,17 +217,17 @@
                         <p class="text-sm text-gray-700">A quantitative study on the correlation between social media usage and academic performance among senior high school students.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -233,17 +239,17 @@
                         <p class="text-sm text-gray-700">Exploring the integration of traditional Filipino cooking methods in the TVL-HE curriculum.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
-                            Denied
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -255,17 +261,17 @@
                         <p class="text-sm text-gray-700">Development of a localized e-learning platform tailored for senior high school curriculum.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -277,20 +283,25 @@
                         <p class="text-sm text-gray-700">Feasibility study on implementing solar power systems in school buildings.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <!-- View PDF button (always visible) -->
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 text-sm">
+                        
+                        <!-- Approve/Undo Approve button -->
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
                             Approve
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
+                        
+                        <!-- Deny/Undo Deny button -->
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
                             Deny
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -302,17 +313,17 @@
                         <p class="text-sm text-gray-700">An analysis of how participation in school organizations affects academic and social development.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -324,20 +335,25 @@
                         <p class="text-sm text-gray-700">Assessment of the nutritional value of meals served in the school canteen and recommendations for improvement.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <!-- View PDF button (always visible) -->
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 text-sm">
+                        
+                        <!-- Approve/Undo Approve button -->
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
                             Approve
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
+                        
+                        <!-- Deny/Undo Deny button -->
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
                             Deny
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -349,17 +365,17 @@
                         <p class="text-sm text-gray-700">A system for tracking computer equipment, maintenance, and laboratory reservations.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="p-6">
+            <div class="p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -371,18 +387,18 @@
                         <p class="text-sm text-gray-700">Design and implementation of a motion-sensing lighting system to reduce energy consumption.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
-                            Denied
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Paper Item 3 - Pending -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -394,13 +410,18 @@
                         <p class="text-sm text-gray-700">A behavioral study investigating the correlation between social media usage and mental health among senior high school students.</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <!-- View PDF button (always visible) -->
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 text-sm">
+                        
+                        <!-- Approve/Undo Approve button -->
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
                             Approve
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
+                        
+                        <!-- Deny/Undo Deny button -->
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
                             Deny
                         </button>
                     </div>
@@ -408,19 +429,19 @@
             </div>
 
             <!-- Paper Item 4 - Denied -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
                             <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full mr-3">Denied</span>
-                            <span class="text-sm text-gray-500">2023 • HUMSS</span>
+                            <span class="text-sm text-gray-500">2023-2024 • HUMSS</span>
                         </div>
                         <h4 class="text-lg font-semibold text-gray-900 mb-1">Biodegradable Plastic Alternatives from Agricultural Waste</h4>
                         <p class="text-gray-600 mb-2">By: David Kim</p>
                         <p class="text-sm text-gray-700">Research into creating environmentally friendly plastic substitutes...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
                         <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
@@ -431,7 +452,7 @@
             </div>
 
             <!-- Paper Item 5 - Approved -->
-            <div class="p-6">
+            <div class="p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -443,18 +464,18 @@
                         <p class="text-sm text-gray-700">Development of machine learning algorithms to assist students with dyslexia...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Paper Item 6 - Pending -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -466,13 +487,18 @@
                         <p class="text-sm text-gray-700">A study on the impact of rising ocean temperatures on marine biodiversity...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <!-- View PDF button (always visible) -->
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 text-sm">
+                        
+                        <!-- Approve/Undo Approve button -->
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
                             Approve
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
+                        
+                        <!-- Deny/Undo Deny button -->
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
                             Deny
                         </button>
                     </div>
@@ -480,7 +506,7 @@
             </div>
 
             <!-- Paper Item 7 - Approved -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -492,18 +518,18 @@
                         <p class="text-sm text-gray-700">An exploration of the principles and potential uses of quantum computing...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Paper Item 8 - Denied -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
@@ -515,36 +541,41 @@
                         <p class="text-sm text-gray-700">A study on the properties and uses of fractals in mathematics and science...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
-                            Denied
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- Paper Item 9 - Pending -->
-            <div class="border-b border-gray-200 p-6">
+            <div class="border-b border-gray-200 p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
                             <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mr-3">Pending</span>
-                            <span class="text-sm text-gray-500">2024 • TVL EIM</span>
+                            <span class="text-sm text-gray-500">2024-2025 • TVL EIM</span>
                         </div>
                         <h4 class="text-lg font-semibold text-gray-900 mb-1">Sustainable Agriculture and Climate Change</h4>
                         <p class="text-gray-600 mb-2">By: Dr. Emily Lee</p>
                         <p class="text-sm text-gray-700">A study on the impact of climate change on agricultural systems and sustainable practices...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <!-- View PDF button (always visible) -->
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 text-sm">
+                        
+                        <!-- Approve/Undo Approve button -->
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
                             Approve
                         </button>
-                        <button class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm">
+                        
+                        <!-- Deny/Undo Deny button -->
+                        <button class="px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm">
                             Deny
                         </button>
                     </div>
@@ -552,29 +583,270 @@
             </div>
 
             <!-- Paper Item 10 - Approved -->
-            <div class="p-6">
+            <div class="p-6 paper-item">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between">
                     <div class="flex-1">
                         <div class="flex items-center mb-2">
                             <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mr-3">Approved</span>
-                            <span class="text-sm text-gray-500">2022 • TVL ICT</span>
+                            <span class="text-sm text-gray-500">2022-2023 • TVL ICT</span>
                         </div>
                         <h4 class="text-lg font-semibold text-gray-900 mb-1">Design and Development of a Prosthetic Limb</h4>
                         <p class="text-gray-600 mb-2">By: Dr. David Kim</p>
                         <p class="text-sm text-gray-700">A project on the design and development of a prosthetic limb using 3D printing technology...</p>
                     </div>
                     <div class="flex items-center space-x-3 mt-4 lg:mt-0">
-                        <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 text-sm">
+                        <button class="px-3 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm">
                             View PDF
                         </button>
-                        <button class="px-3 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed text-sm" disabled>
-                            Approved
+                        <button class="px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm">
+                            Undo
                         </button>
                     </div>
                 </div>
             </div>
 
     </main>
+
+    <script>
+        // Helper function to normalize status text
+        function getStatusClass(paper) {
+            // First, verify this is actually a paper by checking for required elements
+            const title = paper.querySelector('h4');
+            const author = paper.querySelector('.text-gray-600');
+            if (!title || !author) {
+                console.log('Skipping non-paper element:', paper);
+                return 'non-paper';
+            }
+            
+            // Try to find the status badge using specific selectors
+            const statusBadge = paper.querySelector('.inline-block.bg-green-100') || 
+                              paper.querySelector('.inline-block.bg-yellow-100') || 
+                              paper.querySelector('.inline-block.bg-red-100');
+            
+            if (statusBadge) {
+                const statusText = statusBadge.textContent.trim().toLowerCase();
+                console.log(`Found status badge: "${statusText}"`);
+                if (statusText.includes('pending')) return 'pending';
+                if (statusText.includes('approved')) return 'approved';
+                if (statusText.includes('denied')) return 'denied';
+            }
+            
+            // Fallback: Check for action buttons
+            const buttons = paper.querySelectorAll('button:not([class*="bg-\[#9929EA\]"])');
+            for (const button of buttons) {
+                const buttonText = button.textContent.trim().toLowerCase();
+                if (buttonText === 'approve' || buttonText === 'deny') {
+                    return 'pending';
+                }
+                if (buttonText === 'undo') {
+                    // Check button class to determine status (more reliable than color)
+                    if (button.classList.contains('bg-[#10B981]') || button.classList.contains('bg-green-500')) {
+                        return 'approved';
+                    } else if (button.classList.contains('bg-[#EF4444]') || button.classList.contains('bg-red-500')) {
+                        return 'denied';
+                    }
+                }
+            }
+            
+            console.log('Could not determine status for paper:', title.textContent);
+            return 'unknown';
+        }
+
+        // Filter papers based on status, year, and search
+        function filterPapers() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+            const searchInput = document.querySelector('input[type="text"]').value.toLowerCase();
+            
+            console.log('Filtering papers:', { statusFilter, yearFilter, searchInput });
+            
+            // Get all paper items using the dedicated class
+            const allPapers = document.querySelectorAll('.paper-item');
+            
+            allPapers.forEach((paper, index) => {
+                const status = getStatusClass(paper);
+                
+                // Skip non-paper elements
+                if (status === 'non-paper') {
+                    console.log(`Skipping non-paper element ${index + 1}`);
+                    return;
+                }
+                
+                const yearSpan = paper.querySelector('.text-gray-500');
+                const year = yearSpan ? yearSpan.textContent.split('•')[0].trim() : '';
+                const title = paper.querySelector('h4')?.textContent.toLowerCase() || '';
+                const author = paper.querySelector('.text-gray-600')?.textContent.toLowerCase() || '';
+                
+                console.log(`Paper ${index + 1}:`, { status, year, title: paper.querySelector('h4')?.textContent });
+                
+                // Check if paper matches all active filters
+                const matchesStatus = statusFilter === 'all' || status === statusFilter;
+                const matchesYear = yearFilter === 'all' || year === yearFilter;
+                const matchesSearch = searchInput === '' || 
+                    title.includes(searchInput) || 
+                    author.includes(searchInput);
+                
+                // Show/hide based on all filters
+                if (matchesStatus && matchesYear && matchesSearch) {
+                    paper.style.display = '';
+                    console.log(`Showing paper ${index + 1}: ${paper.querySelector('h4')?.textContent}`);
+                } else {
+                    paper.style.display = 'none';
+                    console.log(`Hiding paper ${index + 1}: ${paper.querySelector('h4')?.textContent}`);
+                }
+            });
+        }
+
+        // Debug function to log paper statuses
+        function logPaperStatuses() {
+            console.log('Paper Statuses:');
+            document.querySelectorAll('.paper-item').forEach((paper, index) => {
+                const status = getStatusClass(paper);
+                const title = paper.querySelector('h4')?.textContent || 'No title';
+                console.log(`Paper ${index + 1}: ${status} - ${title}`);
+            });
+        }
+
+        function updatePaperStatus(paper, newStatus) {
+            const statusBadge = paper.querySelector('span[class*="-100"]');
+            const buttonContainer = paper.querySelector('.flex.items-center.space-x-3');
+
+            // Update status badge
+            if (statusBadge) {
+                statusBadge.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                statusBadge.className = 'inline-block text-xs px-2 py-1 rounded-full mr-3 ';
+                if (newStatus === 'approved') {
+                    statusBadge.classList.add('bg-green-100', 'text-green-800');
+                } else if (newStatus === 'denied') {
+                    statusBadge.classList.add('bg-red-100', 'text-red-800');
+                } else {
+                    statusBadge.classList.add('bg-yellow-100', 'text-yellow-800');
+                }
+            }
+            
+            // Update data-status attribute for filtering
+            paper.setAttribute('data-status', newStatus);
+
+            // Update action buttons
+            if (buttonContainer) {
+                // Remove existing action buttons (Approve, Deny, Undo)
+                buttonContainer.querySelectorAll('button').forEach(btn => {
+                    const btnText = btn.textContent.trim().toLowerCase();
+                    if (btnText !== 'view pdf') {
+                        btn.remove();
+                    }
+                });
+
+                if (newStatus === 'approved') {
+                    const undoButton = document.createElement('button');
+                    undoButton.className = 'px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm';
+                    undoButton.textContent = 'Undo';
+                    buttonContainer.appendChild(undoButton);
+                } else if (newStatus === 'denied') {
+                    const undoButton = document.createElement('button');
+                    undoButton.className = 'px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm';
+                    undoButton.textContent = 'Undo';
+                    buttonContainer.appendChild(undoButton);
+                } else { // pending
+                    const approveButton = document.createElement('button');
+                    approveButton.className = 'px-3 py-2 bg-[#10B981] text-white rounded-md hover:bg-[#0D9F6F] transition duration-300 text-sm';
+                    approveButton.textContent = 'Approve';
+
+                    const denyButton = document.createElement('button');
+                    denyButton.className = 'px-3 py-2 bg-[#EF4444] text-white rounded-md hover:bg-[#DC2626] transition duration-300 text-sm';
+                    denyButton.textContent = 'Deny';
+
+                    buttonContainer.appendChild(approveButton);
+                    buttonContainer.appendChild(denyButton);
+                }
+            }
+        }
+
+        // Add event listeners for filters
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing filters...');
+            
+            // Initialize filters with error handling
+            const statusFilter = document.getElementById('statusFilter');
+            const yearFilter = document.getElementById('yearFilter');
+            const searchInput = document.querySelector('input[type="text"]');
+            
+            if (statusFilter) {
+                statusFilter.addEventListener('change', filterPapers);
+                console.log('Status filter listener added');
+            } else {
+                console.error('Status filter not found');
+            }
+            
+            if (yearFilter) {
+                yearFilter.addEventListener('change', filterPapers);
+                console.log('Year filter listener added');
+            } else {
+                console.error('Year filter not found');
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', filterPapers);
+                console.log('Search input listener added');
+            } else {
+                console.error('Search input not found');
+            }
+            
+            // Add data attributes to all paper items for better filtering
+            const allPapers = document.querySelectorAll('.paper-item');
+            allPapers.forEach((paper, index) => {
+                const status = getStatusClass(paper);
+                
+                // Skip non-paper elements
+                if (status === 'non-paper') {
+                    console.log(`Skipping non-paper element ${index + 1} during initialization`);
+                    return;
+                }
+                
+                const yearSpan = paper.querySelector('.text-gray-500');
+                const year = yearSpan ? yearSpan.textContent.split('•')[0].trim() : '';
+                
+                // Set data attributes for filtering
+                paper.setAttribute('data-status', status);
+                paper.setAttribute('data-year', year);
+                
+                // For debugging: add a data-debug attribute
+                paper.setAttribute('data-debug-status', status);
+                
+                console.log(`Paper ${index + 1}: status=${status}, year=${year}`);
+            });
+            
+            // Log initial statuses for debugging
+            logPaperStatuses();
+            
+            // Trigger initial filter to show all papers
+            setTimeout(() => {
+                filterPapers();
+            }, 100);
+
+            // Event listener for action buttons
+            const papersListContainer = document.getElementById('papers-list-container');
+            if (papersListContainer) {
+                papersListContainer.addEventListener('click', function(e) {
+                    const button = e.target.closest('button');
+                    if (!button) return; // Exit if the click was not on a button
+
+                    const buttonText = button.textContent.trim().toLowerCase();
+                    const paper = button.closest('.paper-item');
+                    if (!paper) return; // Exit if the button is not inside a paper item
+
+                    if (buttonText === 'approve') {
+                        updatePaperStatus(paper, 'approved');
+                    } else if (buttonText === 'deny') {
+                        updatePaperStatus(paper, 'denied');
+                    } else if (buttonText === 'undo') {
+                        // When undoing, we revert to 'pending'
+                        updatePaperStatus(paper, 'pending');
+                    }
+                });
+            }
+        });
+    </script>
 
     <!-- Add Paper Modal -->
     <div id="addPaperModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
@@ -616,7 +888,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Section</label>
                         <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                            <option>SELECT SECTION</option>
+                            <option>Select Section</option>
                             <option>TVL ICT</option>
                             <option>TVL EIM</option>
                             <option>TVL HE</option>
@@ -656,7 +928,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-16">
+    <footer class="bg-[#3A2352] text-white py-8 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>&copy; 2024 Research Paper Archive - Admin Portal. All rights reserved.</p>
         </div>

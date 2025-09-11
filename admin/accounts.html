@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen flex flex-col">
     <script>
         // Check authentication
         function checkAuth() {
@@ -35,16 +35,16 @@
 
         // Sample data - Only active students
         const accounts = [
-            { id: 1, name: 'John Doe', email: 'john@example.com', role: 'student', status: 'active', lastLogin: '2024-08-20' },
-            { id: 2, name: 'Michael Brown', email: 'michael.b@example.com', role: 'student', status: 'active', lastLogin: '2024-08-24' },
-            { id: 3, name: 'Emily Davis', email: 'emily.d@example.com', role: 'student', status: 'active', lastLogin: '2024-08-23' },
-            { id: 4, name: 'Daniel Anderson', email: 'daniel.a@example.com', role: 'student', status: 'active', lastLogin: '2024-08-20' },
-            { id: 5, name: 'Robert Johnson', email: 'robert.j@example.com', role: 'student', status: 'active', lastLogin: '2024-08-22' },
-            { id: 6, name: 'Jennifer Lee', email: 'jennifer.l@example.com', role: 'student', status: 'active', lastLogin: '2024-08-21' },
-            { id: 7, name: 'James Wilson', email: 'james.w@example.com', role: 'student', status: 'active', lastLogin: '2024-08-19' },
-            { id: 8, name: 'Patricia Taylor', email: 'patricia.t@example.com', role: 'student', status: 'active', lastLogin: '2024-08-18' },
-            { id: 9, name: 'William Moore', email: 'william.m@example.com', role: 'student', status: 'active', lastLogin: '2024-08-17' },
-            { id: 10, name: 'Elizabeth Martin', email: 'elizabeth.m@example.com', role: 'student', status: 'active', lastLogin: '2024-08-16' },
+            { id: 1, name: 'John Doe', email: 'john@example.com', role: 'student', status: 'active', lastLogin: '2024-08-20', password: '1234' },
+            { id: 2, name: 'Michael Brown', email: 'michael.b@example.com', role: 'student', status: 'active', lastLogin: '2024-08-24', password: '1234' },
+            { id: 3, name: 'Emily Davis', email: 'emily.d@example.com', role: 'student', status: 'active', lastLogin: '2024-08-23', password: '1234' },
+            { id: 4, name: 'Daniel Anderson', email: 'daniel.a@example.com', role: 'student', status: 'active', lastLogin: '2024-08-20', password: '1234' },
+            { id: 5, name: 'Robert Johnson', email: 'robert.j@example.com', role: 'student', status: 'active', lastLogin: '2024-08-22', password: '1234' },
+            { id: 6, name: 'Jennifer Lee', email: 'jennifer.l@example.com', role: 'student', status: 'active', lastLogin: '2024-08-21', password: '1234' },
+            { id: 7, name: 'James Wilson', email: 'james.w@example.com', role: 'student', status: 'active', lastLogin: '2024-08-19', password: '1234' },
+            { id: 8, name: 'Patricia Taylor', email: 'patricia.t@example.com', role: 'student', status: 'active', lastLogin: '2024-08-18', password: '1234' },
+            { id: 9, name: 'William Moore', email: 'william.m@example.com', role: 'student', status: 'active', lastLogin: '2024-08-17', password: '1234' },
+            { id: 10, name: 'Elizabeth Martin', email: 'elizabeth.m@example.com', role: 'student', status: 'active', lastLogin: '2024-08-16', password: '1234' },
         ];
         
         // All accounts are active students
@@ -56,18 +56,17 @@
             
             let filteredAccounts = [...displayAccounts];
             if (filter !== 'all') {
-                filteredAccounts = displayAccounts.filter(account => 
-                    filter === 'pending' ? account.status === 'pending' : 
-                    account.role === filter
-                );
+                filteredAccounts = displayAccounts.filter(account => account.role === filter);
+            } else {
+                filteredAccounts = [...displayAccounts];
             }
 
             tbody.innerHTML = filteredAccounts.map(account => `
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap">
+                <tr class="block md:table-row border-b border-gray-200 md:border-none hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap md:table-cell">
                         <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                <span class="text-indigo-600">${account.name.charAt(0)}</span>
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#F3E6F8] flex items-center justify-center">
+                                <span class="text-[#53317B]">${account.name.charAt(0)}</span>
                             </div>
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">${account.name}</div>
@@ -75,16 +74,18 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-2 whitespace-nowrap md:table-cell" data-label="Role">
+                        <span class="md:hidden text-xs font-medium text-gray-500 uppercase">Role: </span>
                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            account.role === 'admin' ? 'bg-purple-100 text-purple-800' :
-                            account.role === 'professor' ? 'bg-blue-100 text-blue-800' :
-                            'bg-green-100 text-green-800'
+                            account.role === 'admin' ? 'bg-[#F3E6F8] text-[#53317B]' :
+                            account.role === 'professor' ? 'bg-[#E6F0FF] text-[#3B82F6]' :
+                            'bg-[#E6F7E6] text-[#10B981]'
                         }">
                             ${account.role.charAt(0).toUpperCase() + account.role.slice(1)}
                         </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-2 whitespace-nowrap md:table-cell" data-label="Status">
+                        <span class="md:hidden text-xs font-medium text-gray-500 uppercase">Status: </span>
                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                             account.status === 'active' ? 'bg-green-100 text-green-800' :
                             account.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
@@ -93,11 +94,12 @@
                             ${account.status.charAt(0).toUpperCase() + account.status.slice(1)}
                         </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500 md:table-cell" data-label="Last Login">
+                        <span class="md:hidden text-xs font-medium text-gray-500 uppercase">Last Login: </span>
                         ${account.lastLogin}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button onclick="editAccount(${account.id})" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium md:table-cell">
+                        <button onclick="editAccount(${account.id})" class="text-[#9929EA] hover:text-[#7D29EA] mr-3">
                             <i class="fas fa-edit"></i>
                         </button>
                         <button onclick="deleteAccount(${account.id}, '${account.name}')" class="text-red-600 hover:text-red-900">
@@ -112,11 +114,24 @@
             renderAccounts(select.value);
         }
 
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.getElementById(modalId).classList.add('flex');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById(modalId).classList.remove('flex');
+        }
+
         function editAccount(id) {
             const account = accounts.find(a => a.id === id);
             if (account) {
-                // In a real app, this would open a modal to edit the account
-                alert(`Editing account: ${account.name}\nThis would open an edit form in a real application.`);
+                document.getElementById('editAccountId').value = account.id;
+                document.getElementById('editAccountName').value = account.name;
+                document.getElementById('editAccountEmail').value = account.email;
+                document.getElementById('editAccountPassword').value = account.password;
+                openModal('editAccountModal');
             }
         }
 
@@ -132,7 +147,42 @@
         }
 
         // Initialize the page with only active students shown by default
+        document.getElementById('editAccountForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = parseInt(document.getElementById('editAccountId').value);
+            const name = document.getElementById('editAccountName').value;
+            const email = document.getElementById('editAccountEmail').value;
+            const password = document.getElementById('editAccountPassword').value;
+
+            const accountIndex = accounts.findIndex(a => a.id === id);
+            if (accountIndex > -1) {
+                accounts[accountIndex].name = name;
+                accounts[accountIndex].email = email;
+                accounts[accountIndex].password = password;
+                renderAccounts(document.getElementById('filterSelect').value);
+                closeModal('editAccountModal');
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePasswordVisibility');
+            const passwordInput = document.getElementById('editAccountPassword');
+
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    const icon = this.querySelector('i');
+                    if (type === 'password') {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    } else {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    }
+                });
+            }
+
             // Set the filter to show only active students by default
             const filterSelect = document.getElementById('filterSelect');
             if (filterSelect) {
@@ -155,36 +205,36 @@
     </script>
 
     <!-- Navigation -->
-    <nav class="bg-indigo-600 shadow-lg sticky top-0 z-50">
+    <nav class="bg-[#53317B] shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center">
                     <h1 class="text-white text-xl font-bold">Admin Portal</h1>
                 </div>
                 <!-- Mobile menu button -->
-                <button id="menu-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-white md:hidden" aria-controls="mobile-menu" aria-expanded="false">
+                <button id="menu-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-[#53317B] focus:outline-none focus:ring-2 focus:ring-white md:hidden" aria-controls="mobile-menu" aria-expanded="false">
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="dashboard.html" class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <a href="dashboard.html" class="text-white hover:bg-[#53317B] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                         Dashboard
                     </a>
-                    <a href="manage.html" class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <a href="manage.html" class="text-white hover:bg-[#3A2352] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h8M9 7H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2" />
                         </svg>
                         Manage Papers
                     </a>
-                    <a href="accounts.html" class="bg-indigo-700 text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <a href="accounts.html" class="bg-[#3A2352] text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                         <i class="fas fa-users mr-2"></i>
                         Manage Accounts
                     </a>
-                    <button onclick="logout()" class="text-white hover:text-indigo-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                    <button onclick="logout()" class="text-white hover:bg-[#3A2352] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
                         </svg>
@@ -194,25 +244,25 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-indigo-600 border-t border-indigo-500">
+        <div id="mobile-menu" class="md:hidden hidden bg-[#53317B] border-t border-[#3A2352]">
             <div class="px-4 py-3 space-y-2 text-white">
-                <a href="dashboard.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <a href="dashboard.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-[#3A2352]">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     Dashboard
                 </a>
-                <a href="manage.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <a href="manage.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-[#3A2352]">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h8M9 7H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2" />
                     </svg>
                     Manage Papers
                 </a>
-                <a href="accounts.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium bg-indigo-700">
+                <a href="accounts.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium bg-[#3A2352]">
                     <i class="fas fa-users mr-3 w-5 text-center"></i>
                     Manage Accounts
                 </a>
-                <button onclick="logout()" class="w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">
+                <button onclick="logout()" class="w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-[#3A2352]">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
                     </svg>
@@ -223,16 +273,16 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex-grow">
         <!-- Header -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div class="mb-4 md:mb-0">
                 <h2 class="text-3xl font-bold text-gray-900 mb-2">Manage Accounts</h2>
                 <p class="text-gray-600">View and manage user accounts and permissions</p>
             </div>
-            <div class="flex space-x-3">
+            <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3">
                 <div class="relative">
-                    <select id="filterSelect" onchange="filterAccounts(this)" class="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <select id="filterSelect" onchange="filterAccounts(this)" class="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:ring-2 focus:ring-[#9929EA] focus:border-[#9929EA]">
                         <option value="student">Active Students</option>
                         <option value="all">Show All Accounts</option>
                     </select>
@@ -242,9 +292,17 @@
                         </svg>
                     </div>
                 </div>
-                <button class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-300">
+                <button onclick="openModal('addAccountModal')" class="inline-flex items-center px-4 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300">
                     <i class="fas fa-plus mr-2"></i>
                     Add Account
+                </button>
+                <button onclick="openModal('deletedAccountsModal')" class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300">
+                    <i class="fas fa-trash-alt mr-2"></i>
+                    Deleted Accounts
+                </button>
+                <button onclick="openModal('pendingAccountsModal')" class="inline-flex items-center px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">
+                    <i class="fas fa-clock mr-2"></i>
+                    Pending Accounts
                 </button>
             </div>
         </div>
@@ -253,7 +311,7 @@
         <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gray-50 hidden md:table-header-group">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
@@ -269,14 +327,72 @@
             </div>
         </div>
 
-        <!-- No Pagination - Showing all 10 accounts -->
-        <div class="mt-4 text-sm text-gray-500 text-center">
-            Showing all accounts (${displayAccounts.length} total)
+        <!-- Account Count -->
+        <div id="accountCount" class="mt-4 text-sm text-gray-500 text-center">
+            <!-- Count will be dynamically inserted here -->
         </div>
     </main>
 
+    <!-- Modals -->
+    <!-- Edit Account Modal -->
+    <div id="editAccountModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Edit Account</h3>
+            <form id="editAccountForm">
+                <input type="hidden" id="editAccountId">
+                <div class="mb-4">
+                    <label for="editAccountName" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="editAccountName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#9929EA] focus:border-[#9929EA]">
+                </div>
+                <div class="mb-4">
+                    <label for="editAccountEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="editAccountEmail" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#9929EA] focus:border-[#9929EA]">
+                </div>
+                <div class="mb-4">
+                    <label for="editAccountPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                    <div class="relative">
+                        <input type="password" id="editAccountPassword" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-[#9929EA] focus:border-[#9929EA]">
+                        <button type="button" id="togglePasswordVisibility" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" onclick="closeModal('editAccountModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Cancel</button>
+                    <button type="submit" class="bg-[#9929EA] text-white px-4 py-2 rounded-md hover:bg-[#7D29EA]">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Deleted Accounts Modal -->
+    <div id="deletedAccountsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Deleted Accounts</h3>
+            <div class="text-center text-gray-500">
+                <p>No deleted accounts to show.</p>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button type="button" onclick="closeModal('deletedAccountsModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Accounts Modal -->
+    <div id="pendingAccountsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Pending Accounts</h3>
+            <div class="text-center text-gray-500">
+                <p>No pending accounts to show.</p>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button type="button" onclick="closeModal('pendingAccountsModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-16">
+    <footer class="bg-[#3A2352] text-white py-8 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>&copy; 2024 Research Paper Archive - Admin Portal. All rights reserved.</p>
         </div>
