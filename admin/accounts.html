@@ -6,6 +6,35 @@
     <title>Manage Accounts - Admin Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom mobile improvements */
+        @media (max-width: 768px) {
+            .mobile-card-spacing {
+                margin-bottom: 0.75rem;
+            }
+            
+            .mobile-button-group {
+                gap: 0.5rem;
+            }
+            
+            .mobile-text-truncate {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        
+        /* Improved modal backdrop */
+        .modal-backdrop {
+            backdrop-filter: blur(4px);
+        }
+        
+        /* Better focus styles */
+        .focus-ring:focus {
+            outline: 2px solid #9929EA;
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <script>
@@ -52,7 +81,9 @@
 
         function renderAccounts(filter = 'all') {
             const tbody = document.getElementById('accountsTableBody');
-            if (!tbody) return;
+            const mobileList = document.getElementById('mobileAccountsList');
+            
+            if (!tbody && !mobileList) return;
             
             let filteredAccounts = [...displayAccounts];
             if (filter !== 'all') {
@@ -61,53 +92,106 @@
                 filteredAccounts = [...displayAccounts];
             }
 
-            tbody.innerHTML = filteredAccounts.map(account => `
-                <tr class="block md:table-row border-b border-gray-200 md:border-none hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap md:table-cell">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#F3E6F8] flex items-center justify-center">
-                                <span class="text-[#53317B]">${account.name.charAt(0)}</span>
+            // Desktop table view
+            if (tbody) {
+                tbody.innerHTML = filteredAccounts.map(account => `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#F3E6F8] flex items-center justify-center">
+                                    <span class="text-[#53317B] font-medium">${account.name.charAt(0)}</span>
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">${account.name}</div>
+                                    <div class="text-sm text-gray-500">${account.email}</div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">${account.name}</div>
-                                <div class="text-sm text-gray-500">${account.email}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                account.role === 'admin' ? 'bg-[#F3E6F8] text-[#53317B]' :
+                                account.role === 'professor' ? 'bg-[#E6F0FF] text-[#3B82F6]' :
+                                'bg-[#E6F7E6] text-[#10B981]'
+                            }">
+                                ${account.role.charAt(0).toUpperCase() + account.role.slice(1)}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                                account.status === 'active' ? 'bg-green-100 text-green-800' :
+                                account.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                'bg-gray-100 text-gray-800'
+                            }">
+                                ${account.status.charAt(0).toUpperCase() + account.status.slice(1)}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            ${account.lastLogin}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <button onclick="editAccount(${account.id})" class="text-[#9929EA] hover:text-[#7D29EA] mr-4">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteAccount(${account.id}, '${account.name}')" class="text-red-600 hover:text-red-900">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // Mobile card view
+            if (mobileList) {
+                mobileList.innerHTML = filteredAccounts.map(account => `
+                    <div class="p-4 bg-white mobile-card-spacing border-l-4 border-[#9929EA] ml-2">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center flex-1 min-w-0 pr-4">
+                                <div class="flex-shrink-0 h-12 w-12 rounded-full bg-[#F3E6F8] flex items-center justify-center">
+                                    <span class="text-[#53317B] font-medium text-lg">${account.name.charAt(0)}</span>
+                                </div>
+                                <div class="ml-4 flex-1 min-w-0">
+                                    <div class="text-base font-medium text-gray-900 mobile-text-truncate">${account.name}</div>
+                                    <div class="text-sm text-gray-500 mobile-text-truncate">${account.email}</div>
+                                </div>
+                            </div>
+                            <div class="flex space-x-1 mobile-button-group flex-shrink-0">
+                                <button onclick="editAccount(${account.id})" class="text-[#9929EA] hover:text-[#7D29EA] p-2 focus-ring rounded">
+                                    <i class="fas fa-edit text-lg"></i>
+                                </button>
+                                <button onclick="deleteAccount(${account.id}, '${account.name}')" class="text-red-600 hover:text-red-900 p-2 focus-ring rounded">
+                                    <i class="fas fa-trash text-lg"></i>
+                                </button>
                             </div>
                         </div>
-                    </td>
-                    <td class="px-6 py-2 whitespace-nowrap md:table-cell" data-label="Role">
-                        <span class="md:hidden text-xs font-medium text-gray-500 uppercase">Role: </span>
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            account.role === 'admin' ? 'bg-[#F3E6F8] text-[#53317B]' :
-                            account.role === 'professor' ? 'bg-[#E6F0FF] text-[#3B82F6]' :
-                            'bg-[#E6F7E6] text-[#10B981]'
-                        }">
-                            ${account.role.charAt(0).toUpperCase() + account.role.slice(1)}
-                        </span>
-                    </td>
-                    <td class="px-6 py-2 whitespace-nowrap md:table-cell" data-label="Status">
-                        <span class="md:hidden text-xs font-medium text-gray-500 uppercase">Status: </span>
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            account.status === 'active' ? 'bg-green-100 text-green-800' :
-                            account.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                            'bg-gray-100 text-gray-800'
-                        }">
-                            ${account.status.charAt(0).toUpperCase() + account.status.slice(1)}
-                        </span>
-                    </td>
-                    <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500 md:table-cell" data-label="Last Login">
-                        <span class="md:hidden text-xs font-medium text-gray-500 uppercase">Last Login: </span>
-                        ${account.lastLogin}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium md:table-cell">
-                        <button onclick="editAccount(${account.id})" class="text-[#9929EA] hover:text-[#7D29EA] mr-3">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button onclick="deleteAccount(${account.id}, '${account.name}')" class="text-red-600 hover:text-red-900">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-gray-500 uppercase">Role:</span>
+                                <span class="px-2 py-1 inline-flex text-xs leading-4 font-semibold rounded-full ${
+                                    account.role === 'admin' ? 'bg-[#F3E6F8] text-[#53317B]' :
+                                    account.role === 'professor' ? 'bg-[#E6F0FF] text-[#3B82F6]' :
+                                    'bg-[#E6F7E6] text-[#10B981]'
+                                }">
+                                    ${account.role.charAt(0).toUpperCase() + account.role.slice(1)}
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-gray-500 uppercase">Status:</span>
+                                <span class="px-2 py-1 inline-flex text-xs leading-4 font-semibold rounded-full ${
+                                    account.status === 'active' ? 'bg-green-100 text-green-800' :
+                                    account.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                    'bg-gray-100 text-gray-800'
+                                }">
+                                    ${account.status.charAt(0).toUpperCase() + account.status.slice(1)}
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-gray-500 uppercase">Last Login:</span>
+                                <span class="text-xs text-gray-700 font-medium">${account.lastLogin}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
         }
 
         function filterAccounts(select) {
@@ -136,38 +220,42 @@
         }
 
         function deleteAccount(id, name) {
-            if (confirm(`Are you sure you want to delete the account: ${name}?`)) {
-                // In a real app, this would make an API call to delete the account
-                const index = accounts.findIndex(a => a.id === id);
-                if (index > -1) {
-                    accounts.splice(index, 1);
-                    renderAccounts(document.getElementById('filterSelect').value);
-                }
-            }
+            // Demo mode - no actual deletion
+            alert(`Demo Mode: Account deletion is disabled in this demo version.\n\nNote: In a real application, this would delete the account for ${name}.`);
         }
 
-        // Initialize the page with only active students shown by default
-        document.getElementById('editAccountForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const id = parseInt(document.getElementById('editAccountId').value);
-            const name = document.getElementById('editAccountName').value;
-            const email = document.getElementById('editAccountEmail').value;
-            const password = document.getElementById('editAccountPassword').value;
-
-            const accountIndex = accounts.findIndex(a => a.id === id);
-            if (accountIndex > -1) {
-                accounts[accountIndex].name = name;
-                accounts[accountIndex].email = email;
-                accounts[accountIndex].password = password;
-                renderAccounts(document.getElementById('filterSelect').value);
-                closeModal('editAccountModal');
-            }
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
+            // Edit account form submit - Demo only (no actual functionality)
+            var editForm = document.getElementById('editAccountForm');
+            if (editForm) {
+                editForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('editAccountName').value;
+                    
+                    // Demo message - no actual account editing
+                    alert(`Demo Mode: Account editing is disabled in this demo version.\n\nNote: In a real application, this would save changes for ${name}.`);
+                    closeModal('editAccountModal');
+                });
+            }
+
+            // Add account form submit - Demo only (no actual functionality)
+            var addForm = document.getElementById('addAccountForm');
+            if (addForm) {
+                addForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Demo message - no actual account creation
+                    alert('Demo Mode: Account creation is disabled in this demo version.');
+                    closeModal('addAccountModal');
+                    
+                    // Reset form
+                    addForm.reset();
+                });
+            }
+
+            // Password toggle for edit modal
             const togglePassword = document.getElementById('togglePasswordVisibility');
             const passwordInput = document.getElementById('editAccountPassword');
-
             if (togglePassword && passwordInput) {
                 togglePassword.addEventListener('click', function() {
                     const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -183,24 +271,62 @@
                 });
             }
 
-            // Set the filter to show only active students by default
-            const filterSelect = document.getElementById('filterSelect');
-            if (filterSelect) {
-                filterSelect.value = 'student';
+            // Password toggle for add modal
+            const toggleAddPassword = document.getElementById('toggleAddPasswordVisibility');
+            const addPasswordInput = document.getElementById('addAccountPassword');
+            if (toggleAddPassword && addPasswordInput) {
+                toggleAddPassword.addEventListener('click', function() {
+                    const type = addPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    addPasswordInput.setAttribute('type', type);
+                    const icon = this.querySelector('i');
+                    if (type === 'password') {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    } else {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    }
+                });
             }
-            renderAccounts('student');
-            
+
             // Mobile menu toggle functionality
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             
             if (menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', function() {
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', !isExpanded);
+                console.log('Mobile menu elements found');
+                
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Menu toggle clicked');
+                    
                     mobileMenu.classList.toggle('hidden');
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    this.setAttribute('aria-expanded', !isHidden);
+                    console.log('Mobile menu toggled, hidden:', isHidden);
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            } else {
+                console.log('Mobile menu elements not found:', { 
+                    menuToggle: !!menuToggle, 
+                    mobileMenu: !!mobileMenu 
                 });
             }
+
+            // Set the filter to show all accounts by default
+            const filterSelect = document.getElementById('filterSelect');
+            if (filterSelect) {
+                filterSelect.value = 'all';
+            }
+            renderAccounts('all');
         });
     </script>
 
@@ -273,34 +399,24 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex-grow">
+    <main class="w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 xl:px-12 flex-grow">
         <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-            <div class="mb-4 md:mb-0">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Manage Accounts</h2>
-                <p class="text-gray-600">View and manage user accounts and permissions</p>
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+            <div class="mb-6 lg:mb-0">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Manage Accounts</h2>
+                <p class="text-gray-600 text-sm sm:text-base">View and manage user accounts and permissions</p>
             </div>
-            <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-3">
-                <div class="relative">
-                    <select id="filterSelect" onchange="filterAccounts(this)" class="block w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:ring-2 focus:ring-[#9929EA] focus:border-[#9929EA]">
-                        <option value="student">Active Students</option>
-                        <option value="all">Show All Accounts</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button onclick="openModal('addAccountModal')" class="inline-flex items-center px-4 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300">
+            <div class="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+                <!-- Filter removed: all accounts always shown -->
+                <button onclick="openModal('addAccountModal')" class="inline-flex items-center justify-center px-4 py-2 bg-[#9929EA] text-white rounded-md hover:bg-[#7D29EA] transition duration-300 text-sm font-medium">
                     <i class="fas fa-plus mr-2"></i>
                     Add Account
                 </button>
-                <button onclick="openModal('deletedAccountsModal')" class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300">
+                <button onclick="openModal('deletedAccountsModal')" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 text-sm font-medium">
                     <i class="fas fa-trash-alt mr-2"></i>
                     Deleted Accounts
                 </button>
-                <button onclick="openModal('pendingAccountsModal')" class="inline-flex items-center px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">
+                <button onclick="openModal('pendingAccountsModal')" class="inline-flex items-center justify-center px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300 text-sm font-medium">
                     <i class="fas fa-clock mr-2"></i>
                     Pending Accounts
                 </button>
@@ -308,22 +424,32 @@
         </div>
 
         <!-- Accounts Table -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50 hidden md:table-header-group">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Login</th>
-                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="accountsTableBody" class="bg-white divide-y divide-gray-200">
-                        <!-- Accounts will be dynamically inserted here -->
-                    </tbody>
-                </table>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <!-- Desktop Table View -->
+            <div class="hidden md:block">
+                <div class="overflow-x-auto">
+                    <table class="w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Login</th>
+                                <th scope="col" class="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accountsTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Accounts will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Mobile Card View -->
+            <div class="md:hidden">
+                <div id="mobileAccountsList" class="divide-y divide-gray-200">
+                    <!-- Mobile cards will be dynamically inserted here -->
+                </div>
             </div>
         </div>
 
@@ -334,72 +460,117 @@
     </main>
 
     <!-- Modals -->
-    <!-- Edit Account Modal -->
-    <div id="editAccountModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">Edit Account</h3>
-            <form id="editAccountForm">
-                <input type="hidden" id="editAccountId">
-                <div class="mb-4">
-                    <label for="editAccountName" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="editAccountName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#9929EA] focus:border-[#9929EA]">
-                </div>
-                <div class="mb-4">
-                    <label for="editAccountEmail" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="editAccountEmail" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#9929EA] focus:border-[#9929EA]">
-                </div>
-                <div class="mb-4">
-                    <label for="editAccountPassword" class="block text-sm font-medium text-gray-700">Password</label>
-                    <div class="relative">
-                        <input type="password" id="editAccountPassword" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus:outline-none focus:ring-[#9929EA] focus:border-[#9929EA]">
-                        <button type="button" id="togglePasswordVisibility" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500">
-                            <i class="fas fa-eye"></i>
-                        </button>
+    <!-- Add Account Modal -->
+    <div id="addAccountModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 modal-backdrop hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Add New Account</h3>
+                <form id="addAccountForm">
+                    <div class="mb-4">
+                        <label for="addAccountName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="addAccountName" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus-ring" placeholder="Enter full name" required>
                     </div>
-                </div>
-                <div class="flex justify-end space-x-3">
-                    <button type="button" onclick="closeModal('editAccountModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Cancel</button>
-                    <button type="submit" class="bg-[#9929EA] text-white px-4 py-2 rounded-md hover:bg-[#7D29EA]">Save Changes</button>
-                </div>
-            </form>
+                    <div class="mb-4">
+                        <label for="addAccountEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="addAccountEmail" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus-ring" placeholder="Enter email address" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="addAccountPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="addAccountPassword" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus-ring" placeholder="Enter password" required>
+                            <button type="button" id="toggleAddPasswordVisibility" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="addAccountRole" class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                        <select id="addAccountRole" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus-ring" required>
+                            <option value="">Select a role</option>
+                            <option value="student">Student</option>
+                            <option value="professor">Professor</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:justify-end space-y-2 sm:space-y-0 sm:space-x-3">
+                        <button type="button" onclick="closeModal('addAccountModal')" class="w-full sm:w-auto bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus-ring transition duration-200">Cancel</button>
+                        <button type="submit" class="w-full sm:w-auto bg-[#9929EA] text-white px-4 py-2 rounded-md hover:bg-[#7D29EA] focus-ring transition duration-200">Add Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Account Modal -->
+    <div id="editAccountModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 modal-backdrop hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Edit Account</h3>
+                <form id="editAccountForm">
+                    <input type="hidden" id="editAccountId">
+                    <div class="mb-4">
+                        <label for="editAccountName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" id="editAccountName" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus-ring" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editAccountEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="editAccountEmail" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus-ring" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="editAccountPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="editAccountPassword" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 pr-10 focus-ring" required>
+                            <button type="button" id="togglePasswordVisibility" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:justify-end space-y-2 sm:space-y-0 sm:space-x-3">
+                        <button type="button" onclick="closeModal('editAccountModal')" class="w-full sm:w-auto bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus-ring transition duration-200">Cancel</button>
+                        <button type="submit" class="w-full sm:w-auto bg-[#9929EA] text-white px-4 py-2 rounded-md hover:bg-[#7D29EA] focus-ring transition duration-200">Save Changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- Deleted Accounts Modal -->
-    <div id="deletedAccountsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">Deleted Accounts</h3>
-            <div class="text-center text-gray-500">
-                <p>No deleted accounts to show.</p>
-            </div>
-            <div class="flex justify-end mt-4">
-                <button type="button" onclick="closeModal('deletedAccountsModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Close</button>
+    <div id="deletedAccountsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 modal-backdrop hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Deleted Accounts</h3>
+                <div class="text-center text-gray-500 py-8">
+                    <i class="fas fa-trash-alt text-4xl mb-4 text-gray-300"></i>
+                    <p class="text-base">No deleted accounts to show.</p>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button type="button" onclick="closeModal('deletedAccountsModal')" class="w-full sm:w-auto bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus-ring transition duration-200">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Pending Accounts Modal -->
-    <div id="pendingAccountsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">Pending Accounts</h3>
-            <div class="text-center text-gray-500">
-                <p>No pending accounts to show.</p>
-            </div>
-            <div class="flex justify-end mt-4">
-                <button type="button" onclick="closeModal('pendingAccountsModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Close</button>
+    <div id="pendingAccountsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 modal-backdrop hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Pending Accounts</h3>
+                <div class="text-center text-gray-500 py-8">
+                    <i class="fas fa-clock text-4xl mb-4 text-gray-300"></i>
+                    <p class="text-base">No pending accounts to show.</p>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button type="button" onclick="closeModal('pendingAccountsModal')" class="w-full sm:w-auto bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 focus-ring transition duration-200">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-[#3A2352] text-white py-8 mt-16">
+    <footer class="bg-[#3A2352] text-white py-6 sm:py-8 mt-12 sm:mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2024 Research Paper Archive - Admin Portal. All rights reserved.</p>
+            <p class="text-sm sm:text-base">&copy; 2024 Research Paper Archive - Admin Portal. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu toggle is now handled in the main script
-    </script>
 </body>
 </html>
