@@ -14,7 +14,7 @@
             const userRole = localStorage.getItem('userRole');
             
             if (!isLoggedIn || userRole !== 'admin') {
-                window.location.href = '../login.html';
+                window.location.href = '../index.html';
                 return false;
             }
             return true;
@@ -29,7 +29,7 @@
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('userRole');
             localStorage.removeItem('username');
-            window.location.href = '../login.html';
+            window.location.href = '../index.html';
         }
     </script>
     <!-- Navigation -->

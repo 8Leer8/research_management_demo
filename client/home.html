@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Professional research paper archive for high school students and educators. Browse and explore student research across various disciplines."/>
+  <meta name="keywords" content="research papers, high school, student research, academic archive, education"/>
+  <meta name="author" content="Research Paper Archive"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://example.com/"/>
+  <title>Research Paper Archive - Student Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Skip to main content link for screen readers */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #9929EA;
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 0 0 4px 0;
+      z-index: 100;
+    }
+    
+    .skip-link:focus {
+      top: 0;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <script>
+    // Check if user is logged in and show appropriate navigation
+    function checkLoginStatus() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const userRole = localStorage.getItem('userRole');
+      
+      if (isLoggedIn && userRole === 'client') {
+          // User is logged in as client, show logout
+          return true;
+      }
+      return false;
+    }
+    
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('username');
+      window.location.href = '../index.html';
+    }
+    
+    // Update navigation on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      const navContainer = document.getElementById('nav-links');
+      const mobileLinks = document.getElementById('mobile-menu-links');
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (checkLoginStatus()) {
+          navContainer.innerHTML = `
+              <a href="home.html" class="text-[#7A0E9D] hover:text-[#5f0b7a] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Home
+              </a>
+              <a href="research.html" class="text-[#7A0E9D] hover:text-[#5f0b7a] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                Research Papers
+              </a>
+              <button onclick="logout()" class="text-[#7A0E9D] hover:text-[#5f0b7a] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"/></svg>
+                Logout
+              </button>
+          `;
+          mobileLinks.innerHTML = `
+              <a href="home.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Home
+              </a>
+              <a href="research.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                Research Papers
+              </a>
+              <button onclick=\"logout()\" class=\"w-full text-left flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100\">
+                <svg class=\"w-5 h-5 mr-3\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1\"/></svg>
+                Logout
+              </button>
+          `;
+      } else {
+          navContainer.innerHTML = `
+              <a href="home.html" class="text-[#7A0E9D] hover:text-[#5f0b7a] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Home
+              </a>
+              <a href="research.html" class="text-[#7A0E9D] hover:text-[#5f0b7a] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                Research Papers
+              </a>
+              <a href="../index.html" class="text-[#7A0E9D] hover:text-[#5f0b7a] px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                Login
+              </a>
+          `;
+          mobileLinks.innerHTML = `
+              <a href="home.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Home
+              </a>
+              <a href="research.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                Research Papers
+              </a>
+              <a href=\"../index.html\" class=\"flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100\">
+                <svg class=\"w-5 h-5 mr-3\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 11V7m0 0V3m0 4h4m-4 0H8m9 8v3a2 2 0 01-2 2H9a2 2 0 01-2-2v-3m10 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v3\"/></svg>
+                Login
+              </a>
+          `;
+      }
+
+      // Toggle mobile menu
+      if (menuToggle && mobileMenu) {
+        // Ensure mobile menu has content
+        const mobileMenuLinks = document.getElementById('mobile-menu-links');
+        if (!mobileMenuLinks.innerHTML.trim()) {
+          mobileMenuLinks.innerHTML = `
+            <a href="home.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              Home
+            </a>
+            <a href="research.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              Research Papers
+            </a>
+            <a href="../index.html" class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-violet-100">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+              Login
+            </a>
+          `;
+        }
+        
+        menuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          mobileMenu.classList.toggle('hidden');
+          const isHidden = mobileMenu.classList.contains('hidden');
+          this.setAttribute('aria-expanded', !isHidden);
+          console.log('Mobile menu toggled, hidden:', isHidden);
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        console.log('Mobile menu elements not found:', { menuToggle: !!menuToggle, mobileMenu: !!mobileMenu });
+      }
+    });
+  </script>
+
+  <!-- Enhanced Navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-50 backdrop-blur-lg bg-opacity-95">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" role="navigation" aria-label="Main navigation">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo / Branding -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#9929EA] to-[#7A0E9D] rounded-lg flex items-center justify-center" aria-hidden="true">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h1 class="text-[#7A0E9D] text-xl font-bold tracking-tight">
+            PNHS Research Archive
+          </h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <div id="nav-links" class="hidden md:flex items-center space-x-8" role="menubar" aria-label="Desktop navigation menu">
+          <!-- Navigation items will be populated by JavaScript -->
+        </div>
+        
+        <!-- Mobile menu button -->
+        <button id="menu-toggle" class="inline-flex items-center justify-center p-2 rounded-lg text-[#7A0E9D] hover:bg-violet-50 focus:outline-none focus:ring-2 focus:ring-[#9929EA] focus:ring-offset-2 md:hidden transition-all duration-200" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 shadow-lg" role="menu" aria-label="Mobile navigation menu">
+      <div id="mobile-menu-links" class="px-4 py-3 space-y-1 text-[#7A0E9D]" role="none">
+        <!-- Mobile navigation items will be populated by JavaScript -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Enhanced Hero Section -->
+  <main id="main-content">
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-animated" aria-labelledby="hero-heading">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute -top-40 -right-32 w-80 h-80 bg-purple-300 rounded-full opacity-20 floating"></div>
+      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-indigo-300 rounded-full opacity-20 floating floating-delay-1"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-300 rounded-full opacity-10 floating floating-delay-2"></div>
+    </div>
+    
+    <!-- Content overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-10" aria-hidden="true"></div>
+    
+    <!-- Hero content -->
+    <div class="relative z-10 max-w-5xl mx-auto text-center px-6 py-20">
+      <div class="fade-in-up">
+        <h1 id="hero-heading" class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+          Discover <span class="text-yellow-300">Brilliant</span> Research
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
+        A collection of research papers by students of Pasonanca National High School, showcasing creativity, innovation, and academic excellence.
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" role="group" aria-label="Primary actions">
+          <a href="research.html" class="btn-primary inline-flex items-center px-8 py-4 bg-white text-[#9929EA] font-semibold rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300" aria-label="Explore research papers">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Explore Papers
+          </a>
+          <a href="#recent-research" class="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full text-lg hover:bg-white hover:text-[#9929EA] transition-all duration-300" aria-label="View recent research papers">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+            View Recent
+          </a>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce" aria-hidden="true">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Enhanced Recent Research Section -->
+  <section id="recent-research" class="py-20 bg-gray-50" aria-labelledby="recent-research-heading">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 id="recent-research-heading" class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Recent Research Papers</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Discover the latest innovative research from talented high school students across different strands.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 stagger-animation" role="list" aria-label="Recent research papers">
+        <!-- Enhanced Paper 1 -->
+        <article class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden group" role="listitem" aria-labelledby="paper-1-title">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                2023-2024
+              </span>
+              <span class="text-sm text-gray-500 font-medium">TVL ICT</span>
+            </div>
+            <h3 id="paper-1-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#9929EA] transition-colors duration-300">
+              Developing a School Enrollment System Using Web Technologies
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 font-medium">By: Sarah Johnson</p>
+            <p class="text-gray-700 text-sm mb-6 leading-relaxed">
+              A Grade 12 research study focusing on a web-based enrollment platform featuring student records, scheduling, and basic analytics for the ICT strand.
+            </p>
+            <a href="PROTOTYPE.pdf" target="_blank" class="inline-flex items-center text-[#9929EA] hover:text-[#7D29EA] font-semibold text-sm transition-colors duration-300 group-hover:translate-x-2 transform" aria-label="View PDF for Developing a School Enrollment System Using Web Technologies">
+              View PDF
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Enhanced Paper 2 -->
+        <article class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden group" role="listitem" aria-labelledby="paper-2-title">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                2022-2023
+              </span>
+              <span class="text-sm text-gray-500 font-medium">TVL EIM</span>
+            </div>
+            <h3 id="paper-2-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#9929EA] transition-colors duration-300">
+              Energy-Efficient Classroom Lighting: An EIM Implementation
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 font-medium">By: Michael Chen</p>
+            <p class="text-gray-700 text-sm mb-6 leading-relaxed">
+              Design and installation of LED lighting with proper wiring plans, protective devices, and load calculations for classrooms.
+            </p>
+            <a href="PROTOTYPE.pdf" target="_blank" class="inline-flex items-center text-[#9929EA] hover:text-[#7D29EA] font-semibold text-sm transition-colors duration-300 group-hover:translate-x-2 transform" aria-label="View PDF for Energy-Efficient Classroom Lighting: An EIM Implementation">
+              View PDF
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Enhanced Paper 3 -->
+        <article class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden group" role="listitem" aria-labelledby="paper-3-title">
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-4">
+              <span class="inline-block bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                2023-2024
+              </span>
+              <span class="text-sm text-gray-500 font-medium">HUMSS</span>
+            </div>
+            <h3 id="paper-3-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#9929EA] transition-colors duration-300">
+              The Impact of Social Media on Teen Mental Health
+            </h3>
+            <p class="text-gray-600 text-sm mb-4 font-medium">By: Emily Rodriguez</p>
+            <p class="text-gray-700 text-sm mb-6 leading-relaxed">
+              A qualitative study examining the effects of social media usage patterns on mental health among senior high school students.
+            </p>
+            <a href="PROTOTYPE.pdf" target="_blank" class="inline-flex items-center text-[#9929EA] hover:text-[#7D29EA] font-semibold text-sm transition-colors duration-300 group-hover:translate-x-2 transform" aria-label="View PDF for The Impact of Social Media on Teen Mental Health">
+              View PDF
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+      
+      <div class="text-center scroll-reveal">
+        <a href="research.html" class="btn-primary inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#9929EA] to-[#7D29EA] text-white font-semibold rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300" aria-label="View all research papers">
+          View All Research Papers
+          <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Features Section -->
+  <section class="py-20 bg-gradient-to-br from-white to-gray-50" aria-labelledby="features-heading">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 id="features-heading" class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Why Choose Our Archive?</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          We provide the best platform for discovering and sharing high school research papers.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8" role="list" aria-label="Platform features">
+        <!-- Feature 1 -->
+        <article class="feature-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center scroll-reveal-left" role="listitem" aria-labelledby="feature-1-title">
+          <div class="feature-icon w-16 h-16 bg-gradient-to-br from-[#9929EA] to-[#7A0E9D] rounded-2xl flex items-center justify-center mx-auto mb-6" aria-hidden="true">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h3 id="feature-1-title" class="text-2xl font-bold text-gray-900 mb-4">Extensive Collection</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Browse through hundreds of research papers from various school years and academic disciplines, all curated for quality.
+          </p>
+        </article>
+
+        <!-- Feature 2 -->
+        <article class="feature-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center scroll-reveal scroll-reveal" style="animation-delay: 0.2s" role="listitem" aria-labelledby="feature-2-title">
+          <div class="feature-icon w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6" aria-hidden="true">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <h3 id="feature-2-title" class="text-2xl font-bold text-gray-900 mb-4">Easy to Use</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Find research papers by title, author, or academic year with our intuitive search and filter system.
+          </p>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="feature-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center scroll-reveal-right" role="listitem" aria-labelledby="feature-3-title">
+          <div class="feature-icon w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6" aria-hidden="true">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 id="feature-3-title" class="text-2xl font-bold text-gray-900 mb-4">Quality Checked</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Every paper is thoroughly reviewed and approved by educational experts to ensure academic excellence.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+  </main>
+
+
+  <!-- Enhanced Footer -->
+  <footer class="bg-gradient-to-br from-[#2D1B3D] to-[#3A2352] text-white py-8 mt-auto" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-center items-center py-4">
+        <p class="text-gray-300 text-sm">&copy; 2024 Research Paper Archive. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Animation JavaScript -->
+  <script>
+    // Scroll reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right');
+      
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active');
+        }
+      });
+    }
+    
+    // Enhanced mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize scroll reveal
+      revealOnScroll();
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', revealOnScroll);
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Add hover effect to navigation links
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-1px)';
+        });
+        link.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
